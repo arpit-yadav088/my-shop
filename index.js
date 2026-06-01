@@ -4,12 +4,17 @@ import connectDb from "./Backend/config/db.js"
 import cookieParser from "cookie-parser"
 import authRoutes from "./Backend/routes/authRoutes.js"
 dotenv.config()
-let port = process.env.PORT || 6000
+import cors from "cors"
+let port = process.env.PORT || 8000
 
 let app = express()
 
 app.use(express.json())
 app.use(cookieParser())
+app.use(cors({
+  origin:"http://localhost:5173",
+  credentials:true
+}))
 
 app.use("/api/auth",authRoutes)
 

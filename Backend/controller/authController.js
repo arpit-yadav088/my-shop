@@ -53,7 +53,7 @@ export const login = async (req,res) => {
     sameSite: "strict",
     maxAge: 7 * 24 * 60 * 60 * 1000
   })
-  return res.status(201).json({message:"login successfully"})
+  return res.status(201).json({user})
   } catch (error) {
        console.log("login error")
         return res.status(500).json({message:`login error ${error}`})
