@@ -6,6 +6,8 @@ import google from "../assets/google.png";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { FaRegEye } from "react-icons/fa6";
 import axios from "axios";
+import { signInWithPopup } from "firebase/auth"
+import { auth, provider } from "../../utils/Firebase";
 
 const Login = () => {
 
@@ -26,6 +28,22 @@ const Login = () => {
       console.log(result.data)
     } catch (error) {
       console.log(error)
+    }
+  }
+
+    const googleLogin = async () => {
+    try {
+      const response = await signInWithPopup(auth , provider)
+      let user = response.user
+      let name = user.displayName;
+      let email = user.email
+
+      const result = await axios.post(serverUrl + "/api/auth/googlelogin",{name , email} , {withCredentials:true})
+      console.log(result.data)
+
+    } catch (error) {
+    console.log(error.code);
+    console.log(error.message);
     }
   }
 
@@ -78,6 +96,7 @@ const Login = () => {
 
           {/* Google Button */}
           <div
+            onClick={googleLogin}
             className="
               w-full
               h-[42px]
