@@ -10,6 +10,4 @@ authRoutes.get("/logout",logOut)
 authRoutes.post("/googlelogin",googleLogin)
 
 
-
-
 export default authRoutes

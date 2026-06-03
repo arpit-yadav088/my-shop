@@ -9,6 +9,7 @@ import { useContext, useState } from "react";
 import { authDataContext } from "./context/AuthContext";
 import axios from "axios"
 import { auth, provider } from "../utils/Firebase";
+import { userDataContext } from "./context/UserContext";
 
 const Registration = () => {
 
@@ -17,6 +18,7 @@ const Registration = () => {
   let [name, setName] = useState("")
   let [email, setEmail] = useState("")
   let [password, setPassword] = useState("")
+  let { getCurrentUser} = useContext(userDataContext)
 
   let navigate = useNavigate();
 
@@ -26,6 +28,8 @@ const Registration = () => {
       const result = await axios.post(serverUrl + "/api/auth/registration",{
         name,email,password
       },{withCredentials:true})
+      getCurrentUser()
+      navigate("/")
       console.log(result.data)
 
     } catch (error) {

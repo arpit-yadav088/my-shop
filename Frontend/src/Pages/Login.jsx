@@ -8,6 +8,7 @@ import { FaRegEye } from "react-icons/fa6";
 import axios from "axios";
 import { signInWithPopup } from "firebase/auth"
 import { auth, provider } from "../../utils/Firebase";
+import { userDataContext } from "../context/UserContext";
 
 const Login = () => {
 
@@ -16,6 +17,7 @@ const Login = () => {
   let [password, setPassword] = useState("")
 
     let { serverUrl } = useContext(authDataContext);
+    let {getCurrentUser} = useContext(userDataContext)
 
   let navigate = useNavigate();
 
@@ -26,6 +28,9 @@ const Login = () => {
         email,password
       },{withCredentials:true})
       console.log(result.data)
+      getCurrentUser()
+      navigate("/")
+      
     } catch (error) {
       console.log(error)
     }
