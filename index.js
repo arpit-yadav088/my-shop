@@ -6,6 +6,7 @@ import authRoutes from "./Backend/routes/authRoutes.js"
 dotenv.config()
 import cors from "cors"
 import userRoutes from "./Backend/routes/userRoutes.js"
+import productRoutes from "./Backend/routes/productRoutes.js"
 let port = process.env.PORT || 8000
 
 let app = express()
@@ -19,6 +20,7 @@ app.use(cors({
 
 app.use("/api/auth",authRoutes)
 app.use("/api/user",userRoutes)
+app.use("/api/product",productRoutes)
 
 
 app.listen(port,() => {

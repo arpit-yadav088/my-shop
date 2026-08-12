@@ -47,7 +47,7 @@ export const login = async (req,res) => {
       return res.status(400).json({message:"Incorrect password"})
     }
     let token = await genToken(user._id)
-  res.cookie("token",token,{
+    res.cookie("token",token,{
     httpOnly:true,
     secure:false,
     sameSite: "strict",

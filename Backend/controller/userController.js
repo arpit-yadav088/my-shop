@@ -25,7 +25,7 @@ export const getAdmin = async (req,res) => {
       role:"admin"
     })
   } catch (error) {
-    onsole.log(error)
+    console.log(error)
     return res.status(500).json({message:`getAdmin error $(error)`})
   }
 }
